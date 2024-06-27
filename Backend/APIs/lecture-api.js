@@ -158,6 +158,23 @@ lectureApp.get('/approved-requests', verifyToken, expressAsyncHandler(async (req
   }
 }));
 
+// Endpoint to fetch completed and scheduled guest lecture requests
+lectureApp.get('/completed-and-scheduled', verifyToken, expressAsyncHandler(async (req, res) => {
+  const lecturecollection = req.app.get('lecturecollection');
+
+  try {
+    const completedAndScheduledRequests = await lecturecollection.find({
+      $or: [{ status: 'completed' }, { status: 'scheduled' }]
+    }).toArray();
+
+    console.log("Fetched requests:", completedAndScheduledRequests);
+    res.json({ success: true, requests: completedAndScheduledRequests });
+  } catch (error) {
+    console.error("Error fetching completed and scheduled requests:", error);
+    res.status(500).json({ success: false, message: 'Failed to fetch lecture details', error: error.message });
+  }
+}));
+
 // Endpoint to send a notification to the faculty
 lectureApp.post('/send-notification', verifyToken, expressAsyncHandler(async (req, res) => {
   const { requestId, action } = req.body;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../../Context/UserContext';
 import Logout from '../Logout/Logout';
@@ -131,7 +131,7 @@ const HodProfile = () => {
         <h1>HoD Profile</h1>
         <nav>
           <ul className="nav-list">
-            <li><Link className="btn btn-primary" to="/hod-profile/hod-dashboard">Dashboard</Link></li>
+            <li><Link className="btn btn-primary" to="/hod-dashboard">Dashboard</Link></li> {/* Link to HodDashboard */}
             <li><button className="btn btn-info" onClick={handleGenerateReport}>Generate Report</button></li>
             <li><Logout /></li>
           </ul>
@@ -205,8 +205,6 @@ const HodProfile = () => {
           </div>
         </div>
       )}
-
-      <Outlet />
     </div>
   );
 };

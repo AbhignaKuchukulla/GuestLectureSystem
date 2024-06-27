@@ -27,9 +27,8 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/faculty-profile" element={<ProtectedRoute element={<FacultyProfile />} />} />
-          <Route path="/hod-profile/*" element={<ProtectedRoute element={<HodProfile />} />} >
-            <Route path="hod-dashboard" element={<HodDashboard />} /> {/* Nested route for HodDashboard */}
-          </Route>
+          <Route path="/hod-profile" element={<ProtectedRoute element={<HodProfile />} />} />
+          <Route path="/hod-dashboard" element={<ProtectedRoute element={<HodDashboard />} />} /> {/* Separate route for HodDashboard */}
           <Route path="/admin-profile" element={<ProtectedRoute element={<AdminProfile />} />} />
           <Route path="/request-guest-lecture" element={<RequestPage />} />
           <Route path="*" element={<ErrorPage />} />
