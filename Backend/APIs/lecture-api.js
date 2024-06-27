@@ -4,18 +4,21 @@ const { ObjectId } = require('mongodb');
 const expressAsyncHandler = require('express-async-handler');
 require('dotenv').config();
 const verifyToken = require('../Middlewares/verifyToken');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 // Middleware to parse JSON bodies
 lectureApp.use(express.json());
 
 // Endpoint to submit a guest lecture request
-lectureApp.post('/submit-request', expressAsyncHandler(async (req, res) => {
-  const { date, time, topic, attendees, venue, hodName, resourcePerson, description, facultyId } = req.body;
+lectureApp.post('/submit-request', upload.single('profileDocument'), expressAsyncHandler(async (req, res) => {
+  const { date, time, duration, topic, resourcePerson, designation, organization, attendees, year, branch, section, venue, hodName, description, facultyId, facultyName } = req.body;
+  const profileDocument = req.file;
   const lecturecollection = req.app.get('lecturecollection');
   const facultycollection = req.app.get('facultycollection');
   const hodscollection = req.app.get('hodscollection');
 
-  if (!date || !time || !topic || !attendees || !venue || !hodName || !resourcePerson || !description || !facultyId) {
+  if (!date || !time || !duration || !topic || !resourcePerson || !designation || !organization || !attendees || !year || !branch || !venue || !hodName || !description || !facultyId || !facultyName || !profileDocument) {
     return res.status(400).json({ success: false, message: 'All fields are required' });
   }
 
@@ -37,13 +40,21 @@ lectureApp.post('/submit-request', expressAsyncHandler(async (req, res) => {
     const result = await lecturecollection.insertOne({
       date,
       time,
+      duration,
       topic,
+      resourcePerson,
+      designation,
+      organization,
       attendees,
+      year,
+      branch,
+      section,
       venue,
       hodName,
-      resourcePerson,
       description,
       facultyId,
+      facultyName,
+      profileDocument: profileDocument.path,
       status: 'pending'
     });
 

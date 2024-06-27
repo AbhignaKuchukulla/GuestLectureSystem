@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/homepage/Home';
@@ -12,8 +11,9 @@ import RequestPage from './components/requestpage/RequestPage';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import ErrorPage from './components/ErrorPage';
-import { UserProvider } from './UserStore'; // Correct path
+import { UserProvider } from './UserStore';
 import ProtectedRoute from './ProtectedRoute';
+import HodDashboard from './components/hoddashboard/HodDashboard';
 import './App.css';
 
 const App = () => {
@@ -27,7 +27,9 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/faculty-profile" element={<ProtectedRoute element={<FacultyProfile />} />} />
-          <Route path="/hod-profile" element={<ProtectedRoute element={<HodProfile />} />} />
+          <Route path="/hod-profile/*" element={<ProtectedRoute element={<HodProfile />} />} >
+            <Route path="hod-dashboard" element={<HodDashboard />} /> {/* Nested route for HodDashboard */}
+          </Route>
           <Route path="/admin-profile" element={<ProtectedRoute element={<AdminProfile />} />} />
           <Route path="/request-guest-lecture" element={<RequestPage />} />
           <Route path="*" element={<ErrorPage />} />

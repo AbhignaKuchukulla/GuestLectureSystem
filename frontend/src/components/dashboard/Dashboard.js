@@ -87,26 +87,26 @@ const Dashboard = () => {
           <div className="filters">
             <select value={filterLectureName} onChange={(e) => setFilterLectureName(e.target.value)}>
               <option value="">All Lectures</option>
-              {getUniqueOptions('lectureName').map(option => (
-                <option key={option} value={option}>{option}</option>
+              {getUniqueOptions('lectureName').map((option, index) => (
+                <option key={index} value={option}>{option}</option>
               ))}
             </select>
             <select value={filterResourcePerson} onChange={(e) => setFilterResourcePerson(e.target.value)}>
               <option value="">All Resource Persons</option>
-              {getUniqueOptions('resourcePerson').map(option => (
-                <option key={option} value={option}>{option}</option>
+              {getUniqueOptions('resourcePerson').map((option, index) => (
+                <option key={index} value={option}>{option}</option>
               ))}
             </select>
             <select value={filterFacultyCoordinator} onChange={(e) => setFilterFacultyCoordinator(e.target.value)}>
               <option value="">All Faculty Coordinators</option>
-              {getUniqueOptions('facultyCoordinator').map(option => (
-                <option key={option} value={option}>{option}</option>
+              {getUniqueOptions('facultyCoordinator').map((option, index) => (
+                <option key={index} value={option}>{option}</option>
               ))}
             </select>
             <select value={filterDate} onChange={(e) => setFilterDate(e.target.value)}>
               <option value="">All Dates</option>
-              {getUniqueOptions('date').map(option => (
-                <option key={option} value={option}>{option}</option>
+              {getUniqueOptions('date').map((option, index) => (
+                <option key={index} value={option}>{option}</option>
               ))}
             </select>
           </div>
@@ -119,7 +119,17 @@ const Dashboard = () => {
                 <th>Faculty Coordinator</th>
                 <th>Venue</th>
                 <th>Date</th>
+                <th>Time</th>
+                <th>Duration</th>
+                <th>Topic</th>
+                <th>Designation</th>
+                <th>Organization</th>
                 <th>Attendees</th>
+                <th>Year</th>
+                <th>Branch</th>
+                <th>Section</th>
+                <th>HOD Name</th>
+                <th>Faculty Name</th>
               </tr>
             </thead>
             <tbody>
@@ -131,7 +141,17 @@ const Dashboard = () => {
                   <td>{request.facultyCoordinator}</td>
                   <td>{request.venue}</td>
                   <td>{request.date}</td>
+                  <td>{request.time}</td>
+                  <td>{request.duration}</td>
+                  <td>{request.topic}</td>
+                  <td>{request.designation}</td>
+                  <td>{request.organization}</td>
                   <td>{request.attendees}</td>
+                  <td>{request.year}</td>
+                  <td>{request.branch}</td>
+                  <td>{request.section}</td>
+                  <td>{request.hodName}</td>
+                  <td>{request.facultyName}</td>
                 </tr>
               ))}
             </tbody>
