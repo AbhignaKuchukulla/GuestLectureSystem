@@ -18,10 +18,12 @@ const RequestPage = () => {
   const [branch, setBranch] = useState('');
   const [section, setSection] = useState('');
   const [venue, setVenue] = useState('');
+  const [customVenue, setCustomVenue] = useState('');
   const [hodName, setHodName] = useState('');
   const [hods, setHods] = useState([]);
   const [description, setDescription] = useState('');
   const [profileDocument, setProfileDocument] = useState(null);
+  const [facultyCoordinator, setFacultyCoordinator] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -62,12 +64,13 @@ const RequestPage = () => {
     formData.append('year', year);
     formData.append('branch', branch);
     formData.append('section', section);
-    formData.append('venue', venue);
+    formData.append('venue', venue === 'Other' ? customVenue : venue);
     formData.append('hodName', hodName);
     formData.append('description', description);
     formData.append('facultyId', user ? user._id : null);
     formData.append('facultyName', user ? user.name : null);
     formData.append('profileDocument', profileDocument);
+    formData.append('facultyCoordinator', facultyCoordinator);
 
     try {
       const response = await axios.post('http://localhost:4000/lecture-api/submit-request', formData, {
@@ -93,14 +96,16 @@ const RequestPage = () => {
       <form onSubmit={handleSubmit} className="request-form">
         <h2>Request Guest Lecture</h2>
         {error && <div className="error">{error}</div>}
-        <label>
-          Date:
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
-        </label>
-        <label>
-          Time:
-          <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required />
-        </label>
+        <div className="form-group">
+          <label>
+            Date:
+            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} min={new Date().toISOString().split('T')[0]} required />
+          </label>
+          <label>
+            Time:
+            <input type="time" value={time} onChange={(e) => setTime(e.target.value)} required />
+          </label>
+        </div>
         <label>
           Duration:
           <input type="text" value={duration} onChange={(e) => setDuration(e.target.value)} required />
@@ -127,7 +132,13 @@ const RequestPage = () => {
         </label>
         <label>
           Year:
-          <input type="text" value={year} onChange={(e) => setYear(e.target.value)} required />
+          <select value={year} onChange={(e) => setYear(e.target.value)} required>
+            <option value="" disabled>Select Year</option>
+            <option value="I">I</option>
+            <option value="II">II</option>
+            <option value="III">III</option>
+            <option value="IV">IV</option>
+          </select>
         </label>
         <label>
           Branch:
@@ -139,8 +150,20 @@ const RequestPage = () => {
         </label>
         <label>
           Venue:
-          <input type="text" value={venue} onChange={(e) => setVenue(e.target.value)} required />
+          <select value={venue} onChange={(e) => setVenue(e.target.value)} required>
+            <option value="" disabled>Select Venue</option>
+            <option value="KS Audi">KS Audi</option>
+            <option value="B-Seminar hall">B-Seminar hall</option>
+            <option value="Apj Abdul kalam auditorium">Apj Abdul kalam auditorium</option>
+            <option value="Other">Other</option>
+          </select>
         </label>
+        {venue === 'Other' && (
+          <label>
+            Custom Venue:
+            <input type="text" value={customVenue} onChange={(e) => setCustomVenue(e.target.value)} required />
+          </label>
+        )}
         <label>
           HOD Name:
           <select value={hodName} onChange={(e) => setHodName(e.target.value)} required>
@@ -157,6 +180,10 @@ const RequestPage = () => {
         <label>
           Profile Document:
           <input type="file" onChange={(e) => setProfileDocument(e.target.files[0])} required />
+        </label>
+        <label>
+          Faculty Coordinator:
+          <input type="text" value={facultyCoordinator} onChange={(e) => setFacultyCoordinator(e.target.value)} required />
         </label>
         <button type="submit">Submit Request</button>
       </form>

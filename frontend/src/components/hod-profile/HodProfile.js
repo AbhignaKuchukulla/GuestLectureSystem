@@ -131,7 +131,7 @@ const HodProfile = () => {
         <h1>HoD Profile</h1>
         <nav>
           <ul className="nav-list">
-            <li><Link className="btn btn-primary" to="/hod-dashboard">Dashboard</Link></li> {/* Link to HodDashboard */}
+            <li><Link className="btn" to="/hod-dashboard">Dashboard</Link></li> {/* Link to HodDashboard */}
             <li><button className="btn btn-info" onClick={handleGenerateReport}>Generate Report</button></li>
             <li><Logout /></li>
           </ul>

@@ -12,13 +12,13 @@ lectureApp.use(express.json());
 
 // Endpoint to submit a guest lecture request
 lectureApp.post('/submit-request', upload.single('profileDocument'), expressAsyncHandler(async (req, res) => {
-  const { date, time, duration, topic, resourcePerson, designation, organization, attendees, year, branch, section, venue, hodName, description, facultyId, facultyName } = req.body;
+  const { date, time, duration, topic, resourcePerson, designation, organization, attendees, year, branch, section, venue, hodName, description, facultyId, facultyName, facultyCoordinator } = req.body;
   const profileDocument = req.file;
   const lecturecollection = req.app.get('lecturecollection');
   const facultycollection = req.app.get('facultycollection');
   const hodscollection = req.app.get('hodscollection');
 
-  if (!date || !time || !duration || !topic || !resourcePerson || !designation || !organization || !attendees || !year || !branch || !venue || !hodName || !description || !facultyId || !facultyName || !profileDocument) {
+  if (!date || !time || !duration || !topic || !resourcePerson || !designation || !organization || !attendees || !year || !branch || !venue || !hodName || !description || !facultyId || !facultyName || !profileDocument || !facultyCoordinator) {
     return res.status(400).json({ success: false, message: 'All fields are required' });
   }
 
@@ -54,6 +54,7 @@ lectureApp.post('/submit-request', upload.single('profileDocument'), expressAsyn
       description,
       facultyId,
       facultyName,
+      facultyCoordinator,
       profileDocument: profileDocument.path,
       status: 'pending'
     });

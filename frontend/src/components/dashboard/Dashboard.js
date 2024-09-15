@@ -114,44 +114,40 @@ const Dashboard = () => {
             <thead>
               <tr>
                 <th>S.No</th>
-                <th>Name of Lecture</th>
+                <th>Topic</th>
                 <th>Resource Person</th>
+                <th>Designation</th>
+                <th>Organization</th>
                 <th>Faculty Coordinator</th>
                 <th>Venue</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Duration</th>
-                <th>Topic</th>
-                <th>Designation</th>
-                <th>Organization</th>
                 <th>Attendees</th>
                 <th>Year</th>
                 <th>Branch</th>
                 <th>Section</th>
                 <th>HOD Name</th>
-                <th>Faculty Name</th>
               </tr>
             </thead>
             <tbody>
               {filteredRequests.map((request, index) => (
                 <tr key={request._id}>
                   <td>{index + 1}</td>
-                  <td>{request.lectureName}</td>
+                  <td>{request.topic}</td>
                   <td>{request.resourcePerson}</td>
+                  <td>{request.designation}</td>
+                  <td>{request.organization}</td>
                   <td>{request.facultyCoordinator}</td>
                   <td>{request.venue}</td>
                   <td>{request.date}</td>
                   <td>{request.time}</td>
                   <td>{request.duration}</td>
-                  <td>{request.topic}</td>
-                  <td>{request.designation}</td>
-                  <td>{request.organization}</td>
                   <td>{request.attendees}</td>
                   <td>{request.year}</td>
                   <td>{request.branch}</td>
                   <td>{request.section}</td>
                   <td>{request.hodName}</td>
-                  <td>{request.facultyName}</td>
                 </tr>
               ))}
             </tbody>

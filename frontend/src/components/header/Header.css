@@ -9,7 +9,7 @@ header {
 }
 
 .navbar-nav .nav-item .nav-link {
-  color: #007bff;
+  color: #631414;
   padding: 0.5rem 1rem;
   transition: all 0.3s ease-in-out;
   position: relative;
@@ -23,18 +23,18 @@ header {
   display: block;
   margin-top: 5px;
   right: 0;
-  background: #007bff;
+  background: #631414;
   transition: width 0.4s ease;
 }
 
 .navbar-nav .nav-item .nav-link:hover::after {
   width: 100%;
   left: 0;
-  background-color: #007bff;
+  background-color: #631414;
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-  color: #0056b3;
+  color: #631414;
   background-color: #e2e6ea;
   border-radius: 5px;
 }
@@ -46,7 +46,7 @@ header {
 
 .navbar-nav .nav-item .nav-link.home:hover,
 .navbar-nav .nav-item .nav-link.login:hover {
-  background-color: #007bff;
+  background-color: #631414;
   color: #fff;
 }
 

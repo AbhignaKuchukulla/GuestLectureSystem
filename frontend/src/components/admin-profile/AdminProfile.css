@@ -1,26 +1,86 @@
-/* src/components/admin-profile/AdminProfile.css */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
 
 .admin-profile {
+  max-width: 900px;
+  margin: 20px auto;
   padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .admin-profile h2 {
-  color: #333;
+  color: maroon;
+  border-bottom: 2px solid maroon;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .admin-profile .actions {
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.admin-profile .actions button {
-  padding: 10px;
-  margin-right: 10px;
-  background-color: #333;
-  color: #fff;
+.admin-profile .actions button,
+.admin-profile .actions .logout-btn {
+  background-color: #800000; /* Dark maroon */
+  color: #ffffff;
   border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.admin-profile .actions button:hover {
-  background-color: #555;
+.admin-profile .actions button:hover,
+.admin-profile .actions .logout-btn:hover {
+  background-color: #4d0000;
+}
+
+.admin-profile ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-profile ul li {
+  background-color: #f2dede;
+  border: 1px solid #ebcccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-profile ul li button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-profile ul li button:hover {
+  background-color: #c82333;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

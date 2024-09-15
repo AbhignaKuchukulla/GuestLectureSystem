@@ -1,54 +1,121 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 0;
+}
+
 .dashboard {
   padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  border-radius: 10px 10px 0 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 1200px;
-  margin: 0 auto;
+  transition: background-color 0.3s ease;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 2.5rem;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+h2::after {
+  content: '';
+  width: 60px;
+  height: 3px;
+  background-color: #8B0000; /* Maroon */
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
 }
 
 .filters {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 20px;
+  gap: 15px;
 }
 
 .filters select {
   padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #ffffff;
+  font-size: 16px;
+  border: 2px solid #8B0000; /* Maroon */
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filters select:focus {
+  border-color: #660000; /* Darker Maroon */
+  box-shadow: 0 0 10px rgba(139, 0, 0, 0.2);
 }
 
 .dashboard-table {
   width: 100%;
   border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .dashboard-table th, .dashboard-table td {
   border: 1px solid #ddd;
-  padding: 12px;
+  padding: 10px;
   text-align: left;
+  font-size: 16px;
 }
 
 .dashboard-table th {
-  background-color: #007bff;
-  color: white;
+  background-color: #631414;
+  color: #fff;
+  text-transform: uppercase;
 }
 
 .dashboard-table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #f9f9f9;
 }
 
 .dashboard-table tr:hover {
-  background-color: #ddd;
+  background-color: #f1f1f1;
+  transition: background-color 0.2s ease;
 }
 
 .error {
   color: red;
-  margin-bottom: 20px;
-  font-weight: bold;
   text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filters select {
+    margin-bottom: 10px;
+  }
+
+  .dashboard-table th, .dashboard-table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

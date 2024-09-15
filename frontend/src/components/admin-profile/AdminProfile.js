@@ -22,11 +22,23 @@ const AdminProfile = () => {
     navigate('/SignUp');
   };
 
+  const handleAddVenue = () => {
+    navigate('/AddVenue');
+  };
+
+  const handleDashboard = () => {
+    navigate('/AdminDashboard');
+  };
+
   return (
-    <div>
+    <div className="admin-profile">
       <h2>Admin Profile</h2>
-      <Logout />
-      <button onClick={handleCreateAccount}>Create Account</button>
+      <div className="actions">
+        <button onClick={handleDashboard}>Dashboard</button>
+        <button onClick={handleCreateAccount}>Create Account</button>
+        <button onClick={handleAddVenue}>Add Venue</button>
+        <Logout className="logout-btn" />
+      </div>
       <ul>
         {users.map((user) => (
           <li key={user.username}>
